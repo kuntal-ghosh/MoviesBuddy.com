@@ -1,0 +1,12 @@
+﻿.navbar {
+    background-color: #c0392b;
+    color: #ffffff;
+    border-radius: 0;
+}
+.navbar-brand {  
+    float: left;  
+    padding: 15px 15px;  
+    font-size: 30px;  
+    line-height: 20px;  
+    font-family:'Facebook Letter Faces'  
+}  

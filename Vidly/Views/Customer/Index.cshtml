@@ -1,0 +1,30 @@
+﻿@using Vidly.Models
+@model IEnumerable<Vidly.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Save New Customer","New","Customer")
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>MembershipType</th>
+        </tr>
+        </thead>
+        @foreach(var customer in @Model)
+    {
+        <tbody>
+        <tr>
+            <td>@Html.ActionLink(customer.Name,"Edit","Customer",new {Id=customer.Id},null)</td>
+            <td>@customer.MembershipType.Name</td>
+        </tr>
+        </tbody>
+    }
+        
+    </table>
+</div>
+
