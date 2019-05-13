@@ -6,47 +6,53 @@ using System.Net.Http;
 using System.Security;
 using System.Web.Http;
 using Vidly.Database;
+using Vidly.Dtos;
 using Vidly.Models;
 
 namespace Vidly.Controllers.Api
 {
-    public class CustomerController : ApiController
+    public class CustomersController : ApiController
     {
         protected readonly VidlyDbContext _context;
 
-        public CustomerController()
+        public CustomersController()
         {
             _context=new VidlyDbContext();
         }
 
-        public CustomerController(VidlyDbContext context)
+        public CustomersController(VidlyDbContext context)
         {
             _context = context;
         }
 
         // GET/api/Customers
-        public IEnumerable<Customer> GetCustomers()
+        public IHttpActionResult GetCustomers()
         {
 
-            return _context.Customers.ToList();
+             var customers = _context.Customers.ToList()
+                .Select(AutoMapper.Mapper.Map<Customer,CustomerDto>);
+            return Ok(customers);
         }
 
-        public Customer GetCustomer(int id)
+        // GET /api/customers/1
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            if(customer==null)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-            return customer;
+            if (customer == null)
+                return BadRequest();
+                return Ok(AutoMapper.Mapper.Map<Customer,CustomerDto>(customer));
         }
 
         [HttpPost]
-        public Customer CreateCustomer(Customer customer)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
+            var customer = AutoMapper.Mapper.Map<CustomerDto, Customer>(customerDto);
             _context.Customers.Add(customer);
             _context.SaveChanges();
-            return customer;
+            customerDto.Id = customer.Id;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
 
         [HttpPut]
