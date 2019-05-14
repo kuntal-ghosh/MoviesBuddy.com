@@ -10,11 +10,11 @@ using Vidly.ViewModel;
 
 namespace Vidly.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private VidlyDbContext _context;
 
-        public CustomerController()
+        public CustomersController()
         {
             _context = new VidlyDbContext();
         }

@@ -165,11 +165,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
-    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Database\VidlyDbContext.cs" />
     <Compile Include="Dtos\CustomerDto.cs" />
+    <Compile Include="Dtos\MovieDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +190,10 @@
     <Compile Include="Migrations\201905070633521_PopulateGenreTable.cs" />
     <Compile Include="Migrations\201905070633521_PopulateGenreTable.Designer.cs">
       <DependentUpon>201905070633521_PopulateGenreTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905141226180_MovieTableUpdated.cs" />
+    <Compile Include="Migrations\201905141226180_MovieTableUpdated.Designer.cs">
+      <DependentUpon>201905141226180_MovieTableUpdated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -322,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905070633521_PopulateGenreTable.resx">
       <DependentUpon>201905070633521_PopulateGenreTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905141226180_MovieTableUpdated.resx">
+      <DependentUpon>201905141226180_MovieTableUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
